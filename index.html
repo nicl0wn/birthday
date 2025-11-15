@@ -44,6 +44,47 @@
             margin: 0 auto;
         }
 
+        /* Toggle Button Styles */
+        .page-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .toggle-btn {
+            padding: 12px 24px;
+            border: 2px solid var(--pink-light);
+            background: transparent;
+            color: var(--color-text);
+            border-radius: var(--radius-base);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 250ms;
+            font-family: var(--font-family-base);
+        }
+
+        .toggle-btn:hover {
+            border-color: var(--rose-gold);
+            transform: translateY(-2px);
+        }
+
+        .toggle-btn.active {
+            background: linear-gradient(135deg, var(--pink-light) 0%, var(--rose-gold) 100%);
+            color: white;
+            border-color: var(--rose-gold);
+            box-shadow: 0 4px 12px rgba(183, 110, 121, 0.4);
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
         .header {
             text-align: center;
             margin-bottom: 32px;
@@ -330,6 +371,19 @@
             color: #C0152F;
         }
 
+        /* Static activity for preplanned page */
+        .static-activity {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 12px;
+            background: white;
+            border: 1px solid var(--pink-light);
+            border-radius: var(--radius-base);
+            font-size: 13px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
         .form-section {
             background: var(--color-white);
             border: 2px solid var(--lavender);
@@ -482,119 +536,248 @@
 </head>
 <body>
     <div class="container">
-        <header class="header">
-            <h1>Birthday Itinerary Planner 💝</h1>
-            <p class="subtitle">Plan Your Birthday Weekend - December 4-6, 2025</p>
-        </header>
+        <!-- Page Toggle -->
+        <div class="page-toggle">
+            <button class="toggle-btn active" data-page="planning-page">📝 Plan Your Itinerary</button>
+            <button class="toggle-btn" data-page="preplanned-page">📅 Pre-Planned Itinerary</button>
+        </div>
 
-        <section class="add-activities-section">
-            <h2 class="section-title">Your Activities</h2>
-            <div class="add-activity-form">
-                <input type="text" id="activity-input" placeholder="Enter an activity name..." />
-                <button type="button" id="add-activity-btn" class="btn btn-add">Add Activity</button>
-            </div>
-            <div id="activities-list" class="activities-list">
-                <!-- Predefined placeholder activities -->
-                <div class="activity-card" draggable="true" data-activity="Christmas Wonderland">Christmas Wonderland</div>
-                <div class="activity-card" draggable="true" data-activity="Buffet Dinner">Buffet Dinner</div>
-                <div class="activity-card" draggable="true" data-activity="Lorong 20 Eminent Frog Porridge">Lorong 20 Eminent Frog Porridge</div>
-                <div class="activity-card" draggable="true" data-activity="Lorong 9 Beef Kway Teow">Lorong 9 Beef Kway Teow</div>
-                <div class="activity-card" draggable="true" data-activity="Lorong 32 Homemade Noodles">Lorong 32 Homemade Noodles</div>
-                <div class="activity-card" draggable="true" data-activity="Return to Hotel 81">Return to Hotel 81</div>
-                <div class="activity-card" draggable="true" data-activity="Cafe Brunch">Cafe Brunch</div>
-                <div class="activity-card" draggable="true" data-activity="Walk by Orchard (Christams Decorations)">Walk by Orchard (Christams Decorations)</div>
-            </div>
-        </section>
+        <!-- PLANNING PAGE -->
+        <div id="planning-page" class="page active">
+            <header class="header">
+                <h1>Birthday Itinerary Planner 💝</h1>
+                <p class="subtitle">Plan Your Birthday Weekend - December 4-6, 2025</p>
+            </header>
 
-        <section class="days-section">
-            <h2 class="section-title">Your Birthday Schedule</h2>
-            <div class="days-grid">
-                <div class="day-box" id="dec4">
-                    <div class="day-header">
-                        <h2>December 4</h2>
-                        <p class="day-subtitle">Thursday</p>
+            <section class="add-activities-section">
+                <h2 class="section-title">Your Activities</h2>
+                <div class="add-activity-form">
+                    <input type="text" id="activity-input" placeholder="Enter an activity name..." />
+                    <button type="button" id="add-activity-btn" class="btn btn-add">Add Activity</button>
+                </div>
+                <div id="activities-list" class="activities-list">
+                    <div class="activity-card" draggable="true" data-activity="Breakfast at cafe">☕ Breakfast at cafe</div>
+                    <div class="activity-card" draggable="true" data-activity="Sunrise walk">🌅 Sunrise walk</div>
+                    <div class="activity-card" draggable="true" data-activity="Home-cooked breakfast">🥞 Home-cooked breakfast</div>
+                    <div class="activity-card" draggable="true" data-activity="Yoga session">🧘 Yoga session</div>
+                    <div class="activity-card" draggable="true" data-activity="Art gallery visit">🎨 Art gallery visit</div>
+                    <div class="activity-card" draggable="true" data-activity="Shopping spree">🛍️ Shopping spree</div>
+                    <div class="activity-card" draggable="true" data-activity="Movie marathon">🎬 Movie marathon</div>
+                    <div class="activity-card" draggable="true" data-activity="Nature walk">🌳 Nature walk</div>
+                    <div class="activity-card" draggable="true" data-activity="Dinner at fancy restaurant">🍽️ Dinner at fancy restaurant</div>
+                    <div class="activity-card" draggable="true" data-activity="Theater show">🎭 Theater show</div>
+                    <div class="activity-card" draggable="true" data-activity="Stargazing">🌙 Stargazing</div>
+                </div>
+            </section>
+
+            <section class="days-section">
+                <h2 class="section-title">Your Birthday Schedule</h2>
+                <div class="days-grid">
+                    <div class="day-box" id="dec4">
+                        <div class="day-header">
+                            <h2>December 4</h2>
+                            <p class="day-subtitle">Thursday</p>
+                        </div>
+                        <div class="timeslots-container">
+                            <div class="timeslot" data-day="dec4" data-time="morning">
+                                <div class="timeslot-label">🌅 Morning (9 AM - 12 PM)</div>
+                                <div class="timeslot-activities"></div>
+                            </div>
+                            <div class="timeslot" data-day="dec4" data-time="afternoon">
+                                <div class="timeslot-label">☀️ Afternoon (12 PM - 6 PM)</div>
+                                <div class="timeslot-activities"></div>
+                            </div>
+                            <div class="timeslot" data-day="dec4" data-time="evening">
+                                <div class="timeslot-label">🌆 Evening (6 PM - 10 PM)</div>
+                                <div class="timeslot-activities"></div>
+                            </div>
+                            <div class="timeslot" data-day="dec4" data-time="night">
+                                <div class="timeslot-label">🌙 Night (10 PM onwards)</div>
+                                <div class="timeslot-activities"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="timeslots-container">
-                        <div class="timeslot" data-day="dec4" data-time="morning">
-                            <div class="timeslot-label">🌅 Morning (9 AM - 12 PM)</div>
-                            <div class="timeslot-activities"></div>
+
+                    <div class="day-box" id="dec5">
+                        <div class="day-header">
+                            <h2>December 5</h2>
+                            <p class="day-subtitle">Friday</p>
                         </div>
-                        <div class="timeslot" data-day="dec4" data-time="afternoon">
-                            <div class="timeslot-label">☀️ Afternoon (12 PM - 6 PM)</div>
-                            <div class="timeslot-activities"></div>
+                        <div class="timeslots-container">
+                            <div class="timeslot" data-day="dec5" data-time="morning">
+                                <div class="timeslot-label">🌅 Morning (9 AM - 12 PM)</div>
+                                <div class="timeslot-activities"></div>
+                            </div>
+                            <div class="timeslot" data-day="dec5" data-time="afternoon">
+                                <div class="timeslot-label">☀️ Afternoon (12 PM - 6 PM)</div>
+                                <div class="timeslot-activities"></div>
+                            </div>
+                            <div class="timeslot" data-day="dec5" data-time="evening">
+                                <div class="timeslot-label">🌆 Evening (6 PM - 10 PM)</div>
+                                <div class="timeslot-activities"></div>
+                            </div>
+                            <div class="timeslot" data-day="dec5" data-time="night">
+                                <div class="timeslot-label">🌙 Night (10 PM onwards)</div>
+                                <div class="timeslot-activities"></div>
+                            </div>
                         </div>
-                        <div class="timeslot" data-day="dec4" data-time="evening">
-                            <div class="timeslot-label">🌆 Evening (6 PM - 10 PM)</div>
-                            <div class="timeslot-activities"></div>
+                    </div>
+
+                    <div class="day-box" id="dec6">
+                        <div class="day-header">
+                            <h2>December 6</h2>
+                            <p class="day-subtitle">Saturday</p>
                         </div>
-                        <div class="timeslot" data-day="dec4" data-time="night">
-                            <div class="timeslot-label">🌙 Night (10 PM onwards)</div>
-                            <div class="timeslot-activities"></div>
+                        <div class="timeslots-container">
+                            <div class="timeslot" data-day="dec6" data-time="morning">
+                                <div class="timeslot-label">🌅 Morning (9 AM - 12 PM)</div>
+                                <div class="timeslot-activities"></div>
+                            </div>
+                            <div class="timeslot" data-day="dec6" data-time="afternoon">
+                                <div class="timeslot-label">☀️ Afternoon (12 PM - 6 PM)</div>
+                                <div class="timeslot-activities"></div>
+                            </div>
+                            <div class="timeslot" data-day="dec6" data-time="evening">
+                                <div class="timeslot-label">🌆 Evening (6 PM - 10 PM)</div>
+                                <div class="timeslot-activities"></div>
+                            </div>
+                            <div class="timeslot" data-day="dec6" data-time="night">
+                                <div class="timeslot-label">🌙 Night (10 PM onwards)</div>
+                                <div class="timeslot-activities"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="day-box" id="dec5">
-                    <div class="day-header">
-                        <h2>December 5</h2>
-                        <p class="day-subtitle">Friday</p>
+            <section class="form-section">
+                <form id="itinerary-form">
+                    <div class="form-group">
+                        <label for="additional-notes">Additional Notes (Optional)</label>
+                        <textarea id="additional-notes" placeholder="Any special notes or preferences..."></textarea>
                     </div>
-                    <div class="timeslots-container">
-                        <div class="timeslot" data-day="dec5" data-time="morning">
-                            <div class="timeslot-label">🌅 Morning (9 AM - 12 PM)</div>
-                            <div class="timeslot-activities"></div>
+                    <button type="submit" class="submit-btn">Submit My Birthday Plans! 💝</button>
+                </form>
+            </section>
+        </div>
+
+        <!-- PREPLANNED PAGE -->
+        <div id="preplanned-page" class="page">
+            <header class="header">
+                <h1>Pre-Planned Birthday Itinerary 💝</h1>
+                <p class="subtitle">Suggested Birthday Weekend - December 4-6, 2025</p>
+            </header>
+
+            <section class="days-section">
+                <h2 class="section-title">Suggested Birthday Schedule</h2>
+                <div class="days-grid">
+                    <!-- Dec 4 Preplanned -->
+                    <div class="day-box">
+                        <div class="day-header">
+                            <h2>December 4</h2>
+                            <p class="day-subtitle">Thursday</p>
                         </div>
-                        <div class="timeslot" data-day="dec5" data-time="afternoon">
-                            <div class="timeslot-label">☀️ Afternoon (12 PM - 6 PM)</div>
-                            <div class="timeslot-activities"></div>
+                        <div class="timeslots-container">
+                            <div class="timeslot">
+                                <div class="timeslot-label">🌅 Morning (9 AM - 12 PM)</div>
+                                <div class="timeslot-activities">
+                                    <div class="static-activity">☕ Breakfast at cafe</div>
+                                    <div class="static-activity">🌅 Sunrise walk</div>
+                                </div>
+                            </div>
+                            <div class="timeslot">
+                                <div class="timeslot-label">☀️ Afternoon (12 PM - 6 PM)</div>
+                                <div class="timeslot-activities">
+                                    <div class="static-activity">🛍️ Shopping spree</div>
+                                </div>
+                            </div>
+                            <div class="timeslot">
+                                <div class="timeslot-label">🌆 Evening (6 PM - 10 PM)</div>
+                                <div class="timeslot-activities">
+                                    <div class="static-activity">🍽️ Dinner at fancy restaurant</div>
+                                </div>
+                            </div>
+                            <div class="timeslot">
+                                <div class="timeslot-label">🌙 Night (10 PM onwards)</div>
+                                <div class="timeslot-activities">
+                                    <div class="static-activity">🌙 Stargazing</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="timeslot" data-day="dec5" data-time="evening">
-                            <div class="timeslot-label">🌆 Evening (6 PM - 10 PM)</div>
-                            <div class="timeslot-activities"></div>
+                    </div>
+
+                    <!-- Dec 5 Preplanned -->
+                    <div class="day-box">
+                        <div class="day-header">
+                            <h2>December 5</h2>
+                            <p class="day-subtitle">Friday</p>
                         </div>
-                        <div class="timeslot" data-day="dec5" data-time="night">
-                            <div class="timeslot-label">🌙 Night (10 PM onwards)</div>
-                            <div class="timeslot-activities"></div>
+                        <div class="timeslots-container">
+                            <div class="timeslot">
+                                <div class="timeslot-label">🌅 Morning (9 AM - 12 PM)</div>
+                                <div class="timeslot-activities">
+                                    <div class="static-activity">🥞 Home-cooked breakfast</div>
+                                    <div class="static-activity">🧘 Yoga session</div>
+                                </div>
+                            </div>
+                            <div class="timeslot">
+                                <div class="timeslot-label">☀️ Afternoon (12 PM - 6 PM)</div>
+                                <div class="timeslot-activities">
+                                    <div class="static-activity">🎨 Art gallery visit</div>
+                                </div>
+                            </div>
+                            <div class="timeslot">
+                                <div class="timeslot-label">🌆 Evening (6 PM - 10 PM)</div>
+                                <div class="timeslot-activities">
+                                    <div class="static-activity">🎭 Theater show</div>
+                                </div>
+                            </div>
+                            <div class="timeslot">
+                                <div class="timeslot-label">🌙 Night (10 PM onwards)</div>
+                                <div class="timeslot-activities">
+                                    <div class="static-activity">🎵 Live music</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dec 6 Preplanned -->
+                    <div class="day-box">
+                        <div class="day-header">
+                            <h2>December 6</h2>
+                            <p class="day-subtitle">Saturday</p>
+                        </div>
+                        <div class="timeslots-container">
+                            <div class="timeslot">
+                                <div class="timeslot-label">🌅 Morning (9 AM - 12 PM)</div>
+                                <div class="timeslot-activities">
+                                    <div class="static-activity">🌳 Nature walk</div>
+                                </div>
+                            </div>
+                            <div class="timeslot">
+                                <div class="timeslot-label">☀️ Afternoon (12 PM - 6 PM)</div>
+                                <div class="timeslot-activities">
+                                    <div class="static-activity">🎬 Movie marathon</div>
+                                </div>
+                            </div>
+                            <div class="timeslot">
+                                <div class="timeslot-label">🌆 Evening (6 PM - 10 PM)</div>
+                                <div class="timeslot-activities">
+                                    <div class="static-activity">🎂 Birthday cake time</div>
+                                    <div class="static-activity">🍕 Casual dinner</div>
+                                </div>
+                            </div>
+                            <div class="timeslot">
+                                <div class="timeslot-label">🌙 Night (10 PM onwards)</div>
+                                <div class="timeslot-activities">
+                                    <div class="static-activity">🎉 Party time</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="day-box" id="dec6">
-                    <div class="day-header">
-                        <h2>December 6</h2>
-                        <p class="day-subtitle">Saturday</p>
-                    </div>
-                    <div class="timeslots-container">
-                        <div class="timeslot" data-day="dec6" data-time="morning">
-                            <div class="timeslot-label">🌅 Morning (9 AM - 12 PM)</div>
-                            <div class="timeslot-activities"></div>
-                        </div>
-                        <div class="timeslot" data-day="dec6" data-time="afternoon">
-                            <div class="timeslot-label">☀️ Afternoon (12 PM - 6 PM)</div>
-                            <div class="timeslot-activities"></div>
-                        </div>
-                        <div class="timeslot" data-day="dec6" data-time="evening">
-                            <div class="timeslot-label">🌆 Evening (6 PM - 10 PM)</div>
-                            <div class="timeslot-activities"></div>
-                        </div>
-                        <div class="timeslot" data-day="dec6" data-time="night">
-                            <div class="timeslot-label">🌙 Night (10 PM onwards)</div>
-                            <div class="timeslot-activities"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="form-section">
-            <form id="itinerary-form">
-                <div class="form-group">
-                    <label for="additional-notes">Additional Notes (Optional)</label>
-                    <textarea id="additional-notes" placeholder="Any special notes or preferences..."></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Submit My Birthday Plans! 💝</button>
-            </form>
-        </section>
+            </section>
+        </div>
     </div>
 
     <div id="overlay" class="overlay"></div>
@@ -613,12 +796,33 @@
 
         emailjs.init(EMAILJS_PUBLIC_KEY);
 
+        // Page Toggle Logic
+        const toggleBtns = document.querySelectorAll('.toggle-btn');
+        const pages = document.querySelectorAll('.page');
+
+        toggleBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const targetPage = btn.dataset.page;
+                
+                // Remove active class from all buttons and pages
+                toggleBtns.forEach(b => b.classList.remove('active'));
+                pages.forEach(p => p.classList.remove('active'));
+                
+                // Add active class to clicked button and target page
+                btn.classList.add('active');
+                document.getElementById(targetPage).classList.add('active');
+            });
+        });
+
         // DOM Elements
         const activityInput = document.getElementById('activity-input');
         const addActivityBtn = document.getElementById('add-activity-btn');
         const activitiesList = document.getElementById('activities-list');
-        const timeslots = document.querySelectorAll('.timeslot');
+        const timeslots = document.querySelectorAll('#planning-page .timeslot');
         const form = document.getElementById('itinerary-form');
+
+        // Track original activity cards
+        const originalActivityCards = new Map();
 
         // Add Activity Function
         function addActivity() {
@@ -633,15 +837,20 @@
             activityCard.className = 'activity-card';
             activityCard.draggable = true;
             activityCard.dataset.activity = activityName;
+            const uniqueId = 'activity-' + Date.now() + Math.random();
+            activityCard.dataset.id = uniqueId;
             activityCard.innerHTML = `${activityName}<button class="remove-btn">×</button>`;
             
             activityCard.querySelector('.remove-btn').addEventListener('click', (e) => {
                 e.stopPropagation();
                 activityCard.remove();
+                originalActivityCards.delete(uniqueId);
             });
             
-            setupActivityDragListeners(activityCard);
+            setupActivityDragListeners(activityCard, uniqueId);
             activitiesList.appendChild(activityCard);
+            originalActivityCards.set(uniqueId, activityCard);
+            
             activityInput.value = '';
             activityInput.focus();
         }
@@ -653,29 +862,75 @@
             }
         });
 
-        // Setup Drag Listeners for Activity Cards
-        function setupActivityDragListeners(card) {
+        // Setup Drag Listeners for Activity Cards (from activities list)
+        function setupActivityDragListeners(card, uniqueId) {
             card.addEventListener('dragstart', (e) => {
-                e.dataTransfer.effectAllowed = 'copy';
-                e.dataTransfer.setData('text/plain', e.target.dataset.activity);
-                e.currentTarget.classList.add('dragging');
+                e.dataTransfer.effectAllowed = 'move';
+                e.dataTransfer.setData('text/plain', card.dataset.activity);
+                e.dataTransfer.setData('uniqueId', uniqueId);
+                e.dataTransfer.setData('source', 'activities-list');
+                card.classList.add('dragging');
             });
 
             card.addEventListener('dragend', (e) => {
-                e.currentTarget.classList.remove('dragging');
+                card.classList.remove('dragging');
             });
         }
 
         // Setup initial predefined activities
         document.querySelectorAll('.activities-list .activity-card').forEach(card => {
-            setupActivityDragListeners(card);
+            const uniqueId = 'activity-' + Date.now() + Math.random();
+            card.dataset.id = uniqueId;
+            setupActivityDragListeners(card, uniqueId);
+            originalActivityCards.set(uniqueId, card);
+            
             card.addEventListener('click', (e) => {
                 if (e.target.classList.contains('remove-btn')) {
                     e.stopPropagation();
+                    originalActivityCards.delete(card.dataset.id);
                     card.remove();
                 }
             });
         });
+
+        // Create Dropped Activity Element with Drag to Reorder
+        function createDroppedActivity(container, activityName, uniqueId) {
+            const droppedActivity = document.createElement('div');
+            droppedActivity.className = 'dropped-activity';
+            droppedActivity.draggable = true;
+            droppedActivity.dataset.activity = activityName;
+            droppedActivity.dataset.id = uniqueId;
+            droppedActivity.innerHTML = `${activityName}<button class="remove-btn">×</button>`;
+
+            // Drag start - for reordering within timeslot
+            droppedActivity.addEventListener('dragstart', (e) => {
+                e.dataTransfer.effectAllowed = 'move';
+                e.dataTransfer.setData('text/plain', droppedActivity.dataset.activity);
+                e.dataTransfer.setData('uniqueId', uniqueId);
+                e.dataTransfer.setData('source', 'dropped');
+                droppedActivity.classList.add('dragging');
+            });
+
+            droppedActivity.addEventListener('dragend', (e) => {
+                droppedActivity.classList.remove('dragging');
+            });
+
+            // Remove button - returns activity to original list
+            droppedActivity.querySelector('.remove-btn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                // Get the original activity card
+                if (originalActivityCards.has(uniqueId)) {
+                    const originalCard = originalActivityCards.get(uniqueId);
+                    activitiesList.appendChild(originalCard);
+                    originalCard.style.display = 'block';
+                }
+                
+                droppedActivity.remove();
+            });
+
+            container.appendChild(droppedActivity);
+        }
 
         // Setup Timeslot Drop Zones
         timeslots.forEach(timeslot => {
@@ -683,11 +938,19 @@
 
             timeslot.addEventListener('dragover', (e) => {
                 e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
                 timeslot.classList.add('drag-over');
             });
 
+            timeslot.addEventListener('dragenter', (e) => {
+                e.preventDefault();
+                if (e.target.classList.contains('timeslot') || e.target.classList.contains('timeslot-label')) {
+                    timeslot.classList.add('drag-over');
+                }
+            });
+
             timeslot.addEventListener('dragleave', (e) => {
-                if (e.target === timeslot) {
+                if (e.target === timeslot || e.target.classList.contains('timeslot-label')) {
                     timeslot.classList.remove('drag-over');
                 }
             });
@@ -697,37 +960,55 @@
                 timeslot.classList.remove('drag-over');
 
                 const activityName = e.dataTransfer.getData('text/plain');
+                const uniqueId = e.dataTransfer.getData('uniqueId');
+                const source = e.dataTransfer.getData('source');
+
                 if (!activityName.trim()) return;
 
-                createDroppedActivity(activitiesContainer, activityName);
+                // If dragging from activities list (move)
+                if (source === 'activities-list') {
+                    const originalCard = originalActivityCards.get(uniqueId);
+                    if (originalCard) {
+                        originalCard.style.display = 'none'; // Hide from activities list
+                    }
+                    createDroppedActivity(activitiesContainer, activityName, uniqueId);
+                } 
+                // If dragging from dropped activities (reorder)
+                else if (source === 'dropped') {
+                    const draggedElement = document.querySelector('.dropped-activity.dragging');
+                    if (draggedElement) {
+                        if (draggedElement.parentElement !== activitiesContainer) {
+                            // Moving activity to a different timeslot
+                            draggedElement.remove();
+                            createDroppedActivity(activitiesContainer, activityName, uniqueId);
+                        } else {
+                            // Reordering within same timeslot
+                            const afterElement = getDragAfterElement(activitiesContainer, e.clientY);
+                            if (afterElement == null) {
+                                activitiesContainer.appendChild(draggedElement);
+                            } else {
+                                activitiesContainer.insertBefore(draggedElement, afterElement);
+                            }
+                        }
+                    }
+                }
             });
         });
 
-        // Create Dropped Activity Element
-        function createDroppedActivity(container, activityName) {
-            const droppedActivity = document.createElement('div');
-            droppedActivity.className = 'dropped-activity';
-            droppedActivity.draggable = true;
-            droppedActivity.innerHTML = `${activityName}<button class="remove-btn">×</button>`;
+        // Helper function to determine drop position
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('.dropped-activity:not(.dragging)')];
+            
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
 
-            // Allow reordering of dropped activities
-            droppedActivity.addEventListener('dragstart', (e) => {
-                e.dataTransfer.effectAllowed = 'move';
-                e.dataTransfer.setData('text/html', droppedActivity.innerHTML);
-                droppedActivity.classList.add('dragging');
-            });
-
-            droppedActivity.addEventListener('dragend', () => {
-                droppedActivity.classList.remove('dragging');
-            });
-
-            // Remove button
-            droppedActivity.querySelector('.remove-btn').addEventListener('click', (e) => {
-                e.stopPropagation();
-                droppedActivity.remove();
-            });
-
-            container.appendChild(droppedActivity);
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
         }
 
         // Form Submission
@@ -737,7 +1018,7 @@
             const itinerary = {};
             let hasActivities = false;
 
-            document.querySelectorAll('.day-box').forEach(dayBox => {
+            document.querySelectorAll('#planning-page .day-box').forEach(dayBox => {
                 const dayId = dayBox.id;
                 const dayLabel = dayBox.querySelector('.day-header h2').textContent;
                 itinerary[dayId] = { label: dayLabel, timeslots: {} };
@@ -745,7 +1026,7 @@
                 dayBox.querySelectorAll('.timeslot').forEach(timeslot => {
                     const timeLabel = timeslot.querySelector('.timeslot-label').textContent;
                     const activities = Array.from(timeslot.querySelectorAll('.dropped-activity'))
-                        .map(el => el.textContent.replace('×', '').trim());
+                        .map(el => el.dataset.activity || el.textContent.replace('×', '').trim());
                     
                     if (activities.length > 0) {
                         itinerary[dayId].timeslots[timeLabel] = activities;
@@ -779,7 +1060,7 @@
             try {
                 await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
                     message: emailContent,
-                    to_email: 'nicholasloww2002@gmail.com'
+                    to_email: 'deadlymouse15@gmail.com'
                 });
 
                 document.getElementById('overlay').classList.add('active');
